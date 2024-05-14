@@ -1,2 +1,4 @@
 # myfinance-web-dotnet
- An web app using dotnet
+ An web aplication using dotnet.
+ Finance App, finance management
+ 
