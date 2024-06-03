@@ -1,0 +1,39 @@
+﻿@model TransacaoModel
+@{
+    ViewData["Title"] = "Registro de Transação Financeira";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form asp-controller="Transacao" asp-action="Cadastro" method="post">
+    <div class="container">
+        <div class="mb-3">
+            <label class="form-label">Data</label>
+            <input type="hidden" id="txtId" class="form-control" asp-for="Id" />
+            <input type="text" id="txtNome" class="form-control" asp-for="Data" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Valor</label>
+            <input type="text" id="txtValor" class="form-control" asp-for="Data" step="0.01"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Item Plano Conta</label>
+            @Html.DropDownListFor(m => m.PlanoContaId, Model.PlanoContas, new{@class="form-select"})>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Histórico</label>
+            <input type="text" id="txtNome" class="form-control" asp-for="Historico"/>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+            <button type="submit" class="btn btn-secondary btn-lg" onclick="Voltar()">Cancelar</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    function Voltar(){
+        window.location.href = "../Index";
+    }
+    
+</script>
+
