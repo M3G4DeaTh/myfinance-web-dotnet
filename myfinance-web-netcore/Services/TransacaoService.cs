@@ -59,9 +59,9 @@ namespace myfinance_web_netcore.Services
             _myFinanceDbContext.SaveChanges();
         }
 
-        TransacaoModel ITransacaoService.RetornarRegistro(int id)
-        {
-            throw new NotImplementedException();
-        }
+        // TransacaoModel ITransacaoService.RetornarRegistro(int id)
+        // {
+        //     throw new NotImplementedException();
+        // }
     }
 }

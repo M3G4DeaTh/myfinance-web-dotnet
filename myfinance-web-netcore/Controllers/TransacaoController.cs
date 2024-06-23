@@ -32,23 +32,37 @@ public class TransacaoController : Controller
     }
 
     [HttpPost]
-    [HttpGet]
     [Route("Cadastro")]
     [Route("Cadastro/{id}")]
     public IActionResult Cadastro(TransacaoModel model, int? id){
-        var listaPlanoConta = _planoContaService.ListarRegistros();
-        var selectListPlanoContas = new SelectList(listaPlanoConta,"Id", "Descricao");
-        model.PlanoContas = selectListPlanoContas;
-        if (id != null){
-            model = _transacaoService.RetornarRegistro((int)id);
-            model.PlanoContas = selectListPlanoContas;
-            return View(model);
-        }
-        else if (ModelState.IsValid){
+        if (ModelState.IsValid){
             _transacaoService.Salvar(model);
             return RedirectToAction("Cadastro");
         }
         else{
+            var listaPlanoConta = _planoContaService.ListarRegistros();
+            var selectListPlanoContas = new SelectList(listaPlanoConta, "Id", "Descricao");
+            model.PlanoContas = selectListPlanoContas;
+            return View(model);
+        }
+        
+    }
+    
+    [HttpGet]
+    [Route("Cadastro")]
+    [Route("Cadastro/{id}")]
+    public IActionResult Cadastro(int? id){
+        var listaPlanoConta = _planoContaService.ListarRegistros();
+        var selectListPlanoContas = new SelectList(listaPlanoConta,"Id", "Descricao");
+        
+        if (id != null){
+            var model = _transacaoService.RetornarRegistro((int)id);
+            model.PlanoContas = selectListPlanoContas;
+            return View(model);
+        }
+        else{
+            var model = new TransacaoModel();
+            model.PlanoContas = selectListPlanoContas;
             return View(model);
         }
         
